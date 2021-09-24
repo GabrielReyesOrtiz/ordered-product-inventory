@@ -62,12 +62,16 @@ export default class Inventory {
 
   search(id) {
     for (let i = 0; i < this._inventory.length; i++) {
-      if (id == this._inventory[i].getId()) {
-        return i;
+      if (this._inventory[i].getId() <= id) {
+        if (id == this._inventory[i].getId()) {
+          return i;
+        }
+      } else {
+        return null;
       }
     }
-    return null;
   }
+
   searchProduct(idFind) {
     let find = this.search(idFind);
     if (find != null) {
@@ -100,10 +104,9 @@ export default class Inventory {
 
       this._inventory.pop();
 
-      console.log(this._inventory);
       return true;
     }
-    console.log(this._inventory);
+
     return false;
   }
 
