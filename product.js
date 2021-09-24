@@ -1,6 +1,6 @@
 export default class Product {
   constructor(id, name, quantity, cost) {
-    this._id = id;
+    this._id = Number(id);
     this._name = name.toUpperCase();
     this._quantity = Number(quantity);
     this._cost = Number(cost);
@@ -21,6 +21,9 @@ export default class Product {
 
   getCost() {
     return this._cost;
+  }
+  setName(id) {
+    this._id = id;
   }
 
   setName(name) {

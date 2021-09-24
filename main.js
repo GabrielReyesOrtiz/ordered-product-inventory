@@ -7,9 +7,6 @@ class App {
     let btnAdd = document.querySelector("#btnAdd");
     btnAdd.addEventListener("click", this._addProduct);
 
-    let btnAddPos = document.querySelector("#btnAddPos");
-    btnAddPos.addEventListener("click", this._addProductPos);
-
     let btnFind = document.querySelector("#btnFind");
     btnFind.addEventListener("click", this._search);
 
@@ -50,30 +47,6 @@ class App {
     //si falta algún campo, entonces regresa false
     return false;
   }
-
-  _addProductPos = () => {
-    let product = this._readProduct();
-
-    if (!product) {
-      Swal.fire("Error", "Todos los campos son requeridos", "error");
-      return;
-    }
-    let added = this._inventory.addPos(product);
-
-    if (added === false) {
-      Swal.fire("Error", "Participante ya registrado", "error");
-      return;
-    }
-    if (added === true) {
-      Swal.fire("Correcto", "Se agregó un nuevo participante", "success");
-      return;
-    }
-    if (added === 1) {
-      Swal.fire("Error", "No puede agregar mas productos", "error");
-      return;
-    }
-    Swal.fire("Error", "Esa posición no existe", "error");
-  };
 
   _addProduct = () => {
     let product = this._readProduct();
