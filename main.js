@@ -76,7 +76,8 @@ class App {
     let inpIdDelete = document.querySelector("#idDelete");
     let idDelete = inpIdDelete.value;
 
-    let del = this._inventory.delete(idDelete);
+    let element2 = document.getElementById("elementDelete");
+    let del = this._inventory.delete(idDelete, element2);
 
     if (del === false) {
       document.getElementById("elementDelete").innerHTML =
@@ -89,7 +90,9 @@ class App {
     let inpIdFind = document.querySelector("#idFind");
     let idFind = inpIdFind.value;
 
-    let find = this._inventory.searchProduct(idFind);
+    let element = document.getElementById("elementFind");
+
+    let find = this._inventory.searchProduct(idFind, element);
 
     if (find === false) {
       document.getElementById("elementFind").innerHTML =
@@ -99,10 +102,16 @@ class App {
   };
 
   _list = () => {
-    this._inventory.list();
+    let table = document.querySelector("#table");
+    document.getElementById("table").innerHTML =
+      "<table><tr><td><b>Id de Producto</b></td><td><b>Nombre</b></td><td><b>Cantidad</b></td><td><b>Costo por Unidad</b></td><td><b>Valor de Mercancía</b></td></tr></table>";
+    this._inventory.list(table);
   };
   _listReverse = () => {
-    this._inventory.listReverse();
+    let table2 = document.querySelector("#table2");
+    document.getElementById("table2").innerHTML =
+      "<table><tr><td><b>Id de Producto</b></td><td><b>Nombre</b></td><td><b>Cantidad</b></td><td><b>Costo por Unidad</b></td><td><b>Valor de Mercancía</b></td></tr></table>";
+    this._inventory.listReverse(table2);
   };
 }
 

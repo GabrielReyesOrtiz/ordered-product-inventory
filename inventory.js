@@ -4,8 +4,6 @@ export default class Inventory {
   constructor() {
     //vector para agregar a todos los participantes
     this._inventory = new Array();
-    this._table = document.querySelector("#table");
-    this._table2 = document.querySelector("#table2");
 
     //tabla
   }
@@ -24,7 +22,6 @@ export default class Inventory {
     //si no lo encuentra, lo agrega
     if (this._inventory.length < 20) {
       this._addOrdered(product);
-      console.log(this._inventory);
 
       return true;
     }
@@ -72,10 +69,10 @@ export default class Inventory {
     }
   }
 
-  searchProduct(idFind) {
+  searchProduct(idFind, element) {
     let find = this._search(idFind);
     if (find != null) {
-      document.getElementById("elementFind").innerHTML =
+      element.innerHTML =
         "Producto encontrado ID: " +
         this._inventory[find].getId() +
         " Nombre: " +
@@ -90,10 +87,10 @@ export default class Inventory {
     return false;
   }
 
-  delete(idDelete) {
+  delete(idDelete, element2) {
     let search = this._search(idDelete);
     if (search != null) {
-      document.getElementById("elementDelete").innerHTML =
+      element2.innerHTML =
         "Se ELIMINO este producto de su inventario  ID = " +
         this._inventory[search].getId() +
         " NOMBRE = " +
@@ -110,11 +107,9 @@ export default class Inventory {
     return false;
   }
 
-  list() {
-    document.getElementById("table").innerHTML =
-      "<table><tr><td><b>Id de Producto</b></td><td><b>Nombre</b></td><td><b>Cantidad</b></td><td><b>Costo por Unidad</b></td><td><b>Valor de Mercancía</b></td></tr></table>";
-    this._inventory.forEach((s) => {
-      let row = this._table.insertRow(-1);
+  list(table) {
+    for (let i = 0; i < this._inventory.length; i++) {
+      let row = table.insertRow(-1);
 
       let colId = row.insertCell(0);
       let colName = row.insertCell(1);
@@ -122,21 +117,18 @@ export default class Inventory {
       let colCost = row.insertCell(3);
       let colTotalValue = row.insertCell(4);
 
-      colId.innerHTML = s.getId();
-      colName.innerHTML = s.getName();
-      colQuantity.innerHTML = s.getQuantity();
-      colCost.innerHTML = "$ " + s.getCost();
-      colTotalValue.innerHTML = "$ " + s.getTotal();
-    });
+      colId.innerHTML = this._inventory[i].getId();
+      colName.innerHTML = this._inventory[i].getName();
+      colQuantity.innerHTML = this._inventory[i].getQuantity();
+      colCost.innerHTML = "$ " + this._inventory[i].getCost();
+      colTotalValue.innerHTML = "$ " + this._inventory[i].getTotal();
+    }
     return;
   }
 
-  listReverse() {
-    document.getElementById("table2").innerHTML =
-      "<table><tr><td><b>Id de Producto</b></td><td><b>Nombre</b></td><td><b>Cantidad</b></td><td><b>Costo por Unidad</b></td><td><b>Valor de Mercancía</b></td></tr></table>";
-
+  listReverse(table2) {
     for (let i = this._inventory.length; i > 0; i--) {
-      let row = this._table2.insertRow(-1);
+      let row = table2.insertRow(-1);
 
       let colId = row.insertCell(0);
       let colName = row.insertCell(1);
