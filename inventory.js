@@ -60,7 +60,7 @@ export default class Inventory {
     return pos2;
   }
 
-  search(id) {
+  _search(id) {
     for (let i = 0; i < this._inventory.length; i++) {
       if (this._inventory[i].getId() <= id) {
         if (id == this._inventory[i].getId()) {
@@ -73,7 +73,7 @@ export default class Inventory {
   }
 
   searchProduct(idFind) {
-    let find = this.search(idFind);
+    let find = this._search(idFind);
     if (find != null) {
       document.getElementById("elementFind").innerHTML =
         "Producto encontrado ID: " +
@@ -86,12 +86,12 @@ export default class Inventory {
         this._inventory[find].getCost();
       return true;
     }
-    document.getElementById("elementFind").innerHTML = " ";
+
     return false;
   }
 
   delete(idDelete) {
-    let search = this.search(idDelete);
+    let search = this._search(idDelete);
     if (search != null) {
       document.getElementById("elementDelete").innerHTML =
         "Se ELIMINO este producto de su inventario  ID = " +
@@ -130,6 +130,7 @@ export default class Inventory {
     });
     return;
   }
+
   listReverse() {
     document.getElementById("table2").innerHTML =
       "<table><tr><td><b>Id de Producto</b></td><td><b>Nombre</b></td><td><b>Cantidad</b></td><td><b>Costo por Unidad</b></td><td><b>Valor de Mercancía</b></td></tr></table>";

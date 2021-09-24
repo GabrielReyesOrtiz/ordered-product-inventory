@@ -52,20 +52,24 @@ class App {
     let product = this._readProduct();
 
     if (!product) {
-      Swal.fire("Error", "Todos los campos son requeridos", "error");
+      document.getElementById("elementAdd").innerHTML =
+        "Error todos los elementos son requeridos";
       return;
     }
     let added = this._inventory.add(product);
 
     if (added === false) {
-      Swal.fire("Error", "Participante ya registrado", "error");
+      document.getElementById("elementAdd").innerHTML =
+        "Error, Producto ya registrado";
       return;
     }
     if (added === true) {
-      Swal.fire("Correcto", "Se agregó un nuevo participante", "success");
+      document.getElementById("elementAdd").innerHTML =
+        "Se agrego correctamente nuevo producto";
       return;
     }
-    Swal.fire("Error", "No puede agregar mas productos", "error");
+    document.getElementById("elementAdd").innerHTML =
+      "Error, solo se pueden agregar hasta 20 productos";
   };
 
   _delete = () => {
@@ -75,10 +79,10 @@ class App {
     let del = this._inventory.delete(idDelete);
 
     if (del === false) {
-      Swal.fire("Error", "Producto no existe", "error");
+      document.getElementById("elementDelete").innerHTML =
+        "Null ---> El producto no existe ";
       return;
     }
-    Swal.fire("Producto eliminado", "Eliminado", "success");
   };
 
   _search = () => {
@@ -88,10 +92,10 @@ class App {
     let find = this._inventory.searchProduct(idFind);
 
     if (find === false) {
-      Swal.fire("Error", "Producto no existe", "error");
+      document.getElementById("elementFind").innerHTML =
+        "NUll ----> El producto no existe ";
       return;
     }
-    Swal.fire("Producto encontrado", "Encontrado", "success");
   };
 
   _list = () => {
